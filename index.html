@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>謎解きタイムアタック</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>謎解きタイムアタック</h1>
+    <label>名前：</label>
+    <input type="text" id="name" placeholder="あなたの名前"><br>
+    
+    <label>問題群：</label>
+    <select id="set">
+      <option value="default">基本セット</option>
+    </select><br>
+
+    <button onclick="start()">スタート</button>
+  </div>
+
+  <script>
+    function start() {
+      const name = document.getElementById('name').value.trim();
+      if (!name) {
+        alert("名前を入力してください");
+        return;
+      }
+      sessionStorage.setItem("playerName", name);
+      sessionStorage.setItem("quizSet", document.getElementById('set').value);
+      window.location.href = "rules.html";
+    }
+  </script>
+</body>
+</html>
