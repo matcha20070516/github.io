@@ -112,10 +112,15 @@
     document.getElementById("passes").textContent = passes;
 
     // シェアリンク生成
-    const tweetText = `${setName}をクリアした！\nタイム：${formatTime(totalTime)}\nパス回数：${passes}\n\n#TeaA #謎解き`;
+    const tweetText = `${setName}をクリアした！
+    タイム：${formatTime(totalTime)}
+    パス回数：${passes}
+    
+    #TeaA #謎解き`;
+
     const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
     document.getElementById("share-link").href = shareUrl;
-
+    
     // ランキング処理
     function getRanking() {
       const rankingData = JSON.parse(sessionStorage.getItem("ranking") || "[]");
