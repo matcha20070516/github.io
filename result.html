@@ -100,8 +100,8 @@
     document.getElementById("passes").textContent = passes;
 
     // 正しくツイートできるようにエンコード
-    const tweetText = `${setName}をクリアした！%0Aタイム：${formatTime(totalTime)}%0Aパス回数：${passes}%0A%0A#TeaA #謎解き`;
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+    const tweetRaw = `${setName}をクリアした！\nタイム：${formatTime(totalTime)}\nパス回数：${passes}\n\n#TeaA #謎解き`;
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetRaw)}`;
     document.getElementById("share-link").href = tweetUrl;
     
     function getRanking() {
