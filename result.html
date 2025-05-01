@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>結果</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background: #f6f8fb;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      color: #444;
+    }
+
+    .result-info {
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .share-link {
+      display: block;
+      margin-top: 20px;
+      background-color: #5da3fa;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      cursor: pointer;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .share-link:hover {
+      background-color: #3c84e6;
+    }
+
+    .ranking {
+      margin-top: 30px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>お疲れ様でした！</h2>
+    <div class="result-info">
+      <p>あなたは「<span id="set-name"></span>」セットをクリアしました！</p>
+      <p>タイム：<span id="time"></span></p>
+      <p>パス回数：<span id="passes"></span></p>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <a href="#" id="share-link" class="share-link" target="_blank">
+      結果をポストする
+    </a>
+
+    <div class="ranking" id="ranking"></div>
+  </div>
+
+  <script>
+    // セッションからデータを取得
+    const setName = sessionStorage.getItem("setName");
+    const passes = sessionStorage.getItem("passes");
+    const totalTime = sessionStorage.getItem("time");
+
+    // 時間の表示
+    function formatTime(ms) {
+      let hours = String(Math.floor(ms / 3600000)).padStart(2, '0');
+      let minutes = String(Math.floor((ms % 3600000) / 60000)).padStart(2, '0');
+      let seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
+      return `${hours}:${minutes}:${seconds}`;
+    }
+
+    // セッションから取得した情報をHTMLに反映
+    document.getElementById("set-name").textContent = setName;
+    document.getElementById("time").textContent = formatTime(totalTime);
+    document.getElementById("passes").textContent = passes;
+
+    // シェアリンク（Twitter用）
+    const shareLink = document.getElementById("share-link");
+    shareLink.href = `https://twitter.com/intent/tweet?text=%E3%80%8C${setName}%E3%80%8D%E3%82%92%E3%82%AF%E3%83%AA%E3%82%A2%E3%81%97%E3%81%9F%EF%BC%81%0A%E3%82%BF%E3%82%A4%E3%83%A0%3A%20${formatTime(totalTime)}%0A%E3%83%91%E3%82%B9%3A%20${passes}%0A%23TeaA%20%23%E8%AC%8E%E8%A7%A3%E3%81%8D`;
+
+    // ランキング表示（簡易的な例）
+    function getRanking() {
+      const rankingData = JSON.parse(sessionStorage.getItem("ranking")) || [];
+      rankingData.push({
+        setName: setName,
+        time: totalTime,
+        passes: passes,
+      });
+
+      // ソート（タイム順）
+      rankingData.sort((a, b) => a.time - b.time);
+
+      sessionStorage.setItem("ranking", JSON.stringify(rankingData));
+
+      const rankingElement = document.getElementById("ranking");
+      rankingElement.innerHTML = "<h3>ランキング</h3>";
+      rankingData.slice(0, 10).forEach((entry, index) => {
+        const div = document.createElement("div");
+        div.textContent = `${index + 1}. ${entry.setName} - ${formatTime(entry.time)} - パス回数: ${entry.passes}`;
+        rankingElement.appendChild(div);
+      });
+    }
+
+    getRanking();
+  </script>
+</body>
+</html>
