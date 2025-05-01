@@ -50,3 +50,19 @@ button {
 button:hover {
   background-color: #3c84e6;
 }
+
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .count, .message, h2, .result-info {
+    font-size: 0.9em;
+  }
+
+  .share-link {
+    font-size: 1em;
+    padding: 8px;
+  }
+}
