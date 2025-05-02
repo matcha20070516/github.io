@@ -302,11 +302,11 @@
     }
 
     function updateTimer() {
-      let elapsed = Math.floor((Date.now() - startTime) / 1000) + addedPenalty;
-      let hours = String(Math.floor(elapsed / 3600)).padStart(2, '0');
-      let minutes = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
-      let seconds = String(elapsed % 60).padStart(2, '0');
-      document.getElementById("timer").textContent = `${hours}:${minutes}:${seconds}`;
+      let elapsedRaw = Date.now() - startTime + addedPenalty * 1000;
+      let minutes = String(Math.floor((elaspedRaw % 60000) / 60)).padStart(2, '0');
+      let seconds = String(Math.floor((elaspedRaw % 60000) / 1000)).padStart(2, '0');
+      let hundredths = String(Math.floor((elaspedRaw % 1000) / 10)).padStart(2, '0');
+      document.getElementById("timer").textContent = `${minutes}:${seconds}:${hundredths}`;
     }
 
     setInterval(updateTimer, 1000);
