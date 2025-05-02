@@ -90,19 +90,20 @@
     const totalTime = sessionStorage.getItem("time") || "0";
 
     function formatTime(ms) {
-      let hours = String(Math.floor(ms / 3600000)).padStart(2, '0');
-      let minutes = String(Math.floor((ms % 3600000) / 60000)).padStart(2, '0');
-      let seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
-      return `${hours}:${minutes}:${seconds}`;
+      const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
+      const seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
+      const millis = String(ms % 1000).padStart(3, '0');
+      return `${minutes}:${seconds}.${millis}`;
     }
 
+    const formattedTime = formatTime(totalTime);
     document.getElementById("set-name").textContent = setName;
-    document.getElementById("time").textContent = formatTime(totalTime);
+    document.getElementById("time").textContent = formattedTime;
     document.getElementById("passes").textContent = passes;
 
     // シェアリンク（Twitter用）
     const shareLink = document.getElementById("share-link");
-    shareLink.href = `https://twitter.com/intent/tweet?text=%E3%80%8C${setName}%E3%80%8D%E3%82%92%E3%82%AF%E3%83%AA%E3%82%A2%E3%81%97%E3%81%9F%21%0A%E3%82%BF%E3%82%A4%E3%83%A0%3A%20${formatTime(totalTime)}%0A%E3%83%91%E3%82%B9%3A%20${passes}%0A%23TeaA%20%23%E8%AC%8E%E8%A7%A3%E3%81%8D`;
+    shareLink.href = `https://twitter.com/intent/tweet?text=%E3%80%8C${setName}%E3%80%8D%E3%82%92%E3%82%AF%E3%83%AA%E3%82%A2%E3%81%97%E3%81%9F%21%0A%E3%82%BF%E3%82%A4%E3%83%A0%3A%20${formattedTimeFull}%0A%E3%83%91%E3%82%B9%3A%20${passes}%0A%23TeaA%20%23%E8%AC%8E%E8%A7%A3%E3%81%8D`;
     
     function getRanking() {
       const rankingData = JSON.parse(sessionStorage.getItem("ranking")) || [];
@@ -120,7 +121,7 @@
       rankingElement.innerHTML = "<h3>ランキング</h3>";
       rankingData.slice(0, 10).forEach((entry, index) => {
         const div = document.createElement("div");
-        div.textContent = `${index + 1}. ${entry.name} - ${formatTime(entry.time)} - パス: ${entry.passes}`;
+        div.textContent = `${index + 1}. ${entry.name} - ${formatTime(Number(entry.time))} - パス: ${entry.passes}`;
         rankingElement.appendChild(div);
       });
     }
