@@ -211,6 +211,10 @@
       document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
       document.getElementById("forward-btn").style.visibility =
         current < maxReached && current < total ? "visible" : "hidden";
+      window.onload = function () {
+        loadQuestion();
+        setInterval(updateTimer, 100);
+      };
     }
 
     function updateChapters() {
@@ -311,6 +315,7 @@
 
       // 結果を表示（分：秒：百秒）
       document.getElementById("timer").textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
+      setInterval(updateTimer, 100); // 0.1秒ごとに更新
     }
   </script>
   <script>
@@ -321,6 +326,14 @@
 
   window.addEventListener('resize', adjustViewportHeight);
   window.addEventListener('load', adjustViewportHeight);
+</script>
+<script>
+  // （既存の関数群のあとにこれを追加）
+  
+  window.onload = function () {
+    loadQuestion();
+    setInterval(updateTimer, 100);
+  };
 </script>
 </body>
 </html>
