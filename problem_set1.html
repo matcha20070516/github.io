@@ -300,8 +300,7 @@
       sessionStorage.setItem("time", totalTime);
       window.location.href = "result.html";
     }
-
-    function updateTimer() {
+  function updateTimer() {
       elapsedRaw = Date.now() - startTime + addedPenalty * 1000; // 経過時間の更新
 
       // 分、秒、百秒の計算
