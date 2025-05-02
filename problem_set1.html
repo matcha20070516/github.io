@@ -305,22 +305,18 @@
       window.location.href = "result.html";
     }
 
-    let lastUpdate = Date.now(); // 最後の更新時刻
+    let lastUpdate = Date.now(); // 最後の更新
     function updateTimer() {
-      elapsedRaw = Date.now() - startTime + addedPenalty * 1000; // 経過時間の更新
+      const elapsed = Date.now() - startTime + addedPenalty * 1000;
+      const minutes = Math.floor(elapsed / 60000);
+      const seconds = Math.floor((elapsed % 60000) / 1000);
 
-      // 分、秒、百秒の計算
-      let minutes = Math.floor(elapsedRaw / 60000); // 分の計算
-      let seconds = Math.floor((elapsedRaw % 60000) / 1000); // 秒の計算
-      let hundredths = Math.floor((elapsedRaw % 1000) / 10); // 百秒の計算
+      document.getElementById("timer").textContent =
+        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-      // 結果を表示（分：秒：百秒）
-      document.getElementById("timer").textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
-      setInterval(updateTimer, 100); // 0.1秒ごとに更新
-      requestAnimationFrame(updateTimer);
+      // 正確な時間は保存用に保持
+      window.elapsedTimeMillis = elapsed;
     }
-    // 最初の呼び出し
-    requestAnimationFrame(updateTimer);
   </script>
   <script>
   function adjustViewportHeight() {
