@@ -98,7 +98,7 @@
 
     const formattedTime = formatTime(totalTime);
     document.getElementById("set-name").textContent = setName;
-    document.getElementById("time").textContent = formattedTime;
+    document.getElementById("time").textContent = formatTimeWithMs(totalTime);
     document.getElementById("passes").textContent = passes;
 
     // シェアリンク（Twitter用）
