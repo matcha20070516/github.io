@@ -304,7 +304,8 @@
       sessionStorage.setItem("time", totalTime);
       window.location.href = "result.html";
     }
-    
+
+    let lastUpdate = Date.now(); // 最後の更新時刻
     function updateTimer() {
       elapsedRaw = Date.now() - startTime + addedPenalty * 1000; // 経過時間の更新
 
@@ -316,7 +317,10 @@
       // 結果を表示（分：秒：百秒）
       document.getElementById("timer").textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(hundredths).padStart(2, '0')}`;
       setInterval(updateTimer, 100); // 0.1秒ごとに更新
+      requestAnimationFrame(updateTimer);
     }
+    // 最初の呼び出し
+    requestAnimationFrame(updateTimer);
   </script>
   <script>
   function adjustViewportHeight() {
