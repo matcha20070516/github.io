@@ -89,10 +89,10 @@
     const passes = sessionStorage.getItem("passes") || "0";
     const totalTime = sessionStorage.getItem("time") || "0";
 
-    console.log("setName:", setName);
-    console.log("playerName", playerName);
-    console.log("passes", passes);
-    console.log("totalTime", totalTime);
+    alert("setName: " + setName);
+    alert("playerName: " + playerName);
+
+    
     function formatTime(ms) {
       const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
       const seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
