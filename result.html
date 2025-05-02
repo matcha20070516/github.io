@@ -89,6 +89,8 @@
     const playerName = sessionStorage.getItem("playerName") || "名無し";
     const passes = sessionStorage.getItem("passes") || "0";
     const totalTime = sessionStorage.getItem("time") || "0";
+
+    const totalTime = Number(sessionStorage.getItem("time")) || 0;
     
     function formatTime(ms) {
       const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
@@ -106,9 +108,9 @@
     const shareLink = document.getElementById("share-link");
     const shareText = encodeURIComponent(
       `「${setName}」をクリアした！
-      タイム: ${formatTime(totalTime)}
+      タイム: ${formatTime(Number(totalTime))}
       パス: ${passes}
-    #TeaA #謎解き`
+      #TeaA #謎解き`
     );
     
     shareLink.href = `https://twitter.com/intent/tweet?text=${shareText}`;
