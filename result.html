@@ -81,6 +81,7 @@
     </a>
 
     <div class="ranking" id="ranking"></div>
+    <div id="debug" style="font-size:0.8em; color:gray; margin-top: 20px;"></div>
   </div>
 
   <script>
@@ -134,6 +135,14 @@
     }
 
     getRanking();
+    // デバッグ表示
+    const debugDiv = document.getElementById("debug");
+    debugDiv.innerText = `
+      playerName: ${sessionStorage.getItem("playerName")}
+      setName: ${sessionStorage.getItem("setName")}
+      time: ${sessionStorage.getItem("time")}
+      passes: ${sessionStorage.getItem("passes")}
+    `;
   </script>
 </body>
 </html>
