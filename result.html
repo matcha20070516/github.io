@@ -88,10 +88,6 @@
     const playerName = sessionStorage.getItem("playerName") || "名無し";
     const passes = sessionStorage.getItem("passes") || "0";
     const totalTime = sessionStorage.getItem("time") || "0";
-
-    alert("setName: " + setName);
-    alert("playerName: " + playerName);
-
     
     function formatTime(ms) {
       const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
