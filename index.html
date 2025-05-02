@@ -81,14 +81,14 @@
       const name = document.getElementById("name").value.trim();
       const set = document.getElementById("set").value;
 
-      sessionStorage.setItem("playerName", name);
-      sessionStorage.setItem("setName", set);
+      
       if (!name) {
         alert("名前を入力してください");
         return;
       }
-      sessionStorage.setItem("player", name);
-      sessionStorage.setItem("set", set);
+      sessionStorage.setItem("playerName", name);
+      sessionStorage.setItem("setName", set);
+      
       window.location.href = "rule.html";
     }
   </script>
