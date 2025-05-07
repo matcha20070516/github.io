@@ -1,4 +1,4 @@
-<script>
+
     const setName = sessionStorage.getItem("setName");
     const playerName = sessionStorage.getItem("playerName") || "名無し";
     const passes = sessionStorage.getItem("passes") || "0";
@@ -59,4 +59,3 @@
       time: ${sessionStorage.getItem("time")}
       passes: ${sessionStorage.getItem("passes")}
     `;
-  </script>
