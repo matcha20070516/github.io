@@ -25,9 +25,6 @@
         document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
         document.getElementById("forward-btn").style.visibility =
             current < maxReached && current < total ? "visible" : "hidden";
-        window.onload = function() {
-            loadQuestion();
-            setInterval(updateTimer, 500);
         };
     }
 
@@ -130,9 +127,7 @@
 
         // 正確な時間は保存用に保持
         window.elapsedTimeMillis = elapsed;
-    } <
-    /script> <
-    script >
+    }
         function adjustViewportHeight() {
             const vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
