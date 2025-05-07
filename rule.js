@@ -1,5 +1,3 @@
-<script>
-    function next() {
-      window.location.href = "countdown.html";
-    }
-  </script>
+function next() {
+    window.location.href = "countdown.html";
+}
