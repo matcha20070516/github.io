@@ -1,4 +1,3 @@
-<script>
     const total = 5;
     let current = 1;
     let passes = 0;
@@ -11,142 +10,140 @@
     const locked = Array(total).fill(false);
 
     function loadQuestion() {
-      document.getElementById("question-num").textContent = `第${current}問`;
-      document.getElementById("quiz-img").src = `q${current}.png`;
+        document.getElementById("question-num").textContent = `第${current}問`;
+        document.getElementById("quiz-img").src = `q${current}.png`;
 
-      const input = document.getElementById("answer");
-      input.value = answerStates[current - 1] || "";
-      input.disabled = locked[current - 1];
-      document.getElementById("message").textContent = "";
-      updateNavButtons();
-      updateChapters();
+        const input = document.getElementById("answer");
+        input.value = answerStates[current - 1] || "";
+        input.disabled = locked[current - 1];
+        document.getElementById("message").textContent = "";
+        updateNavButtons();
+        updateChapters();
     }
 
     function updateNavButtons() {
-      document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
-      document.getElementById("forward-btn").style.visibility =
-        current < maxReached && current < total ? "visible" : "hidden";
-      window.onload = function () {
-        loadQuestion();
-        setInterval(updateTimer, 500);
-      };
+        document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
+        document.getElementById("forward-btn").style.visibility =
+            current < maxReached && current < total ? "visible" : "hidden";
+        window.onload = function() {
+            loadQuestion();
+            setInterval(updateTimer, 500);
+        };
     }
 
     function updateChapters() {
-      const chapterContainer = document.getElementById("chapters");
-      chapterContainer.innerHTML = "";
-      for (let i = 0; i < total; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = `${i + 1}`;
-        btn.className = "chapter-btn";
-        if (i + 1 === current) btn.classList.add("current");
-        if (locked[i]) btn.classList.add("answered");
-        btn.disabled = i + 1 > maxReached;
-        btn.onclick = () => {
-          current = i + 1;
-          loadQuestion();
-        };
-        chapterContainer.appendChild(btn);
-      }
+        const chapterContainer = document.getElementById("chapters");
+        chapterContainer.innerHTML = "";
+        for (let i = 0; i < total; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = `${i + 1}`;
+            btn.className = "chapter-btn";
+            if (i + 1 === current) btn.classList.add("current");
+            if (locked[i]) btn.classList.add("answered");
+            btn.disabled = i + 1 > maxReached;
+            btn.onclick = () => {
+                current = i + 1;
+                loadQuestion();
+            };
+            chapterContainer.appendChild(btn);
+        }
     }
 
     function checkAnswer() {
-      const input = document.getElementById("answer");
-      const userAnswer = input.value.trim();
-      answerStates[current - 1] = userAnswer;
+        const input = document.getElementById("answer");
+        const userAnswer = input.value.trim();
+        answerStates[current - 1] = userAnswer;
 
-      const correct = answers[current - 1];
-      const normalized = userAnswer.replace(/\s/g, "").replace(/[ー－]/g, "").toLowerCase();
-      const correctNormalized = correct.replace(/\s/g, "").replace(/[ー－]/g, "").toLowerCase();
+        const correct = answers[current - 1];
+        const normalized = userAnswer.replace(/\s/g, "").replace(/[ー－]/g, "").toLowerCase();
+        const correctNormalized = correct.replace(/\s/g, "").replace(/[ー－]/g, "").toLowerCase();
 
-      if (normalized === correctNormalized) {
-        document.getElementById("message").textContent = "正解！";
-        locked[current - 1] = true;
-        input.disabled = true;
-        if (current === maxReached) maxReached++;
-        setTimeout(() => {
-          if (current < total) {
-            current++;
-            loadQuestion();
-          } else {
-            finish();
-          }
-        }, 500);
-      } else {
-        document.getElementById("message").textContent = "不正解…もう一度試してみよう";
-      }
+        if (normalized === correctNormalized) {
+            document.getElementById("message").textContent = "正解！";
+            locked[current - 1] = true;
+            input.disabled = true;
+            if (current === maxReached) maxReached++;
+            setTimeout(() => {
+                if (current < total) {
+                    current++;
+                    loadQuestion();
+                } else {
+                    finish();
+                }
+            }, 500);
+        } else {
+            document.getElementById("message").textContent = "不正解…もう一度試してみよう";
+        }
     }
 
     function back() {
-      if (current > 1) {
-        current--;
-        loadQuestion();
-      }
+        if (current > 1) {
+            current--;
+            loadQuestion();
+        }
     }
 
     function forward() {
-      if (current < maxReached && current < total) {
-        current++;
-        loadQuestion();
-      }
+        if (current < maxReached && current < total) {
+            current++;
+            loadQuestion();
+        }
     }
 
     function pass() {
-      passes++;
-      addedPenalty += 60; // 60秒加算
-      showPassOverlay();
+        passes++;
+        addedPenalty += 60; // 60秒加算
+        showPassOverlay();
 
-      if (current === maxReached && current < total) maxReached++;
-      if (current < total) {
-        current++;
-        loadQuestion();
-      } else {
-        finish();
-      }
+        if (current === maxReached && current < total) maxReached++;
+        if (current < total) {
+            current++;
+            loadQuestion();
+        } else {
+            finish();
+        }
     }
 
     function showPassOverlay() {
-      const overlay = document.getElementById("pass-overlay");
-      overlay.style.display = "block";
-      setTimeout(() => {
-        overlay.style.display = "none";
-      }, 1000);
+        const overlay = document.getElementById("pass-overlay");
+        overlay.style.display = "block";
+        setTimeout(() => {
+            overlay.style.display = "none";
+        }, 1000);
     }
 
     function finish() {
-      const totalTime = Date.now() - startTime + addedPenalty * 1000;
-      sessionStorage.setItem("passes", passes);
-      sessionStorage.setItem("time", totalTime);
-      window.location.href = "result.html";
+        const totalTime = Date.now() - startTime + addedPenalty * 1000;
+        sessionStorage.setItem("passes", passes);
+        sessionStorage.setItem("time", totalTime);
+        window.location.href = "result.html";
     }
 
     let lastUpdate = Date.now(); // 最後の更新
     function updateTimer() {
-      const elapsed = Date.now() - startTime + addedPenalty * 1000;
-      const minutes = Math.floor(elapsed / 60000);
-      const seconds = Math.floor((elapsed % 60000) / 1000);
+        const elapsed = Date.now() - startTime + addedPenalty * 1000;
+        const minutes = Math.floor(elapsed / 60000);
+        const seconds = Math.floor((elapsed % 60000) / 1000);
 
-      document.getElementById("timer").textContent =
-        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById("timer").textContent =
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-      // 正確な時間は保存用に保持
-      window.elapsedTimeMillis = elapsed;
-    }
-  </script>
-  <script>
-  function adjustViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
+        // 正確な時間は保存用に保持
+        window.elapsedTimeMillis = elapsed;
+    } <
+    /script> <
+    script >
+        function adjustViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
 
-  window.addEventListener('resize', adjustViewportHeight);
-  window.addEventListener('load', adjustViewportHeight);
-</script>
-<script>
-  // （既存の関数群のあとにこれを追加）
-  
-  window.onload = function () {
-    loadQuestion();
-    setInterval(updateTimer, 100);
-  };
-</script>
+    window.addEventListener('resize', adjustViewportHeight);
+    window.addEventListener('load', adjustViewportHeight);
+
+    // （既存の関数群のあとにこれを追加）
+
+    window.onload = function() {
+        loadQuestion();
+        setInterval(updateTimer, 100);
+    };
