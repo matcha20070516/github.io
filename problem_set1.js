@@ -134,7 +134,6 @@ function adjustViewportHeight() {
 }
 
 window.addEventListener('resize', adjustViewportHeight);
-window.addEventListener('load', adjustViewportHeight);
 
 window.onload = function() {
     adjustViewportHeight();
