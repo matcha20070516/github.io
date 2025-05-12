@@ -7,8 +7,6 @@ const total = 5;
 
     const answers = ["りんご", "みかん", "ぶどう", "もも", "すいか"];
     const answerStates = Array(total).fill(null);
-    const locked = Array(total).fill(false);
-
     function loadQuestion() {
         document.getElementById("question-num").textContent = `第${current}問`;
         document.getElementById("quiz-img").src = `q${current}.png`;
