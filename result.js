@@ -1,9 +1,7 @@
 
-    const setName = sessionStorage.getItem("setName");
+    const setName = sessionStorage.getItem("setName") || "未設定";
     const playerName = sessionStorage.getItem("playerName") || "名無し";
     const passes = sessionStorage.getItem("passes") || "0";
-    const totalTime = sessionStorage.getItem("time") || "0";
-
     const totalTime = Number(sessionStorage.getItem("time")) || 0;
     
     function formatTime(ms) {
