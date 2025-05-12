@@ -23,9 +23,6 @@ const total = 5;
         document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
         document.getElementById("forward-btn").style.visibility =
             current < maxReached && current < total ? "visible" : "hidden";
-        window.onload = function() {
-            loadQuestion();
-            setInterval(updateTimer, 500);
         };
     }
 
@@ -89,18 +86,22 @@ const total = 5;
     }
 
     function pass() {
-        passes++;
-        addedPenalty += 60; // 60秒加算
-        showPassOverlay();
+    if (locked[current - 1]) return; // すでに正解してたら無効
+    if (answerStates[current - 1] === "__passed__") return; // パス済なら無効
 
-        if (current === maxReached && current < total) maxReached++;
-        if (current < total) {
-            current++;
-            loadQuestion();
-        } else {
-            finish();
-        }
+    passes++;
+    addedPenalty += 60;
+    answerStates[current - 1] = "__passed__"; // パス記録
+    showPassOverlay();
+
+    if (current === maxReached && current < total) maxReached++;
+    if (current < total) {
+        current++;
+        loadQuestion();
+    } else {
+        finish();
     }
+}
 
     function showPassOverlay() {
         const overlay = document.getElementById("pass-overlay");
