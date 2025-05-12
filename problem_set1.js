@@ -1,4 +1,3 @@
-<script>
 const total = 5;
 let current = 1;
 let passes = 0;
@@ -142,4 +141,3 @@ window.onload = function() {
     loadQuestion();
     setInterval(updateTimer, 100);
 };
-</script>
