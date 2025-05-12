@@ -66,8 +66,3 @@ button:hover {
     padding: 8px;
   }
 }
-
-#pass-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
