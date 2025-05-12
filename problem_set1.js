@@ -14,7 +14,7 @@ function loadQuestion() {
     document.getElementById("quiz-img").src = `q${current}.png`;
 
     const input = document.getElementById("answer");
-    input.value = answerStates[current - 1] || "";
+    input.value = answerStates[current - 1] === "__passed__" ? "" : (answerStates[current - 1] || "");
     input.disabled = locked[current - 1];
     document.getElementById("message").textContent = "";
     updateNavButtons();
