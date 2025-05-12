@@ -17,6 +17,15 @@ function loadQuestion() {
     input.value = answerStates[current - 1] || "";
     input.disabled = locked[current - 1];
     document.getElementById("message").textContent = "";
+        // パスボタンの状態変更
+    const passBtn = document.getElementById("pass-btn");
+    if (passed[current - 1]) {
+        passBtn.disabled = true;
+        passBtn.classList.add("disabled");
+    } else {
+        passBtn.disabled = false;
+        passBtn.classList.remove("disabled");
+    }
     updateNavButtons();
     updateChapters();
 }
@@ -87,6 +96,9 @@ function forward() {
 }
 
 function pass() {
+    if (passed[current - 1]) return; // すでにパス済みなら無視
+
+    passed[current - 1] = true;
     passes++;
     addedPenalty += 60; // 60秒加算
     showPassOverlay();
