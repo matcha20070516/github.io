@@ -9,8 +9,8 @@ function start() {
   sessionStorage.setItem("playerName", name);
   sessionStorage.setItem("setName", set);
 
-  if (set === "謎検模試_M") {
-    window.location.href = "exrule.html"
+  if (set.includes("謎検模試")) {
+    window.location.href = "exrule.html";
   } else {
     window.location.href = "rule.html";
   }
