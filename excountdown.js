@@ -22,7 +22,7 @@ const timer = setInterval(() => {
             case '謎検模試_M':
                 targetPage = 'exproblem_set1.html'; // セット1の問題ページ
                 break;
-            case 'set2':
+            case 'お謎検模試ろい':
                 targetPage = 'exproblem_set2.html'; // セット2の問題ページ
                 break;
             case 'set3':
