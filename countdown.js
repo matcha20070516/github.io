@@ -19,16 +19,16 @@ const timer = setInterval(() => {
         let targetPage = '';
         switch (selectedSet) {
             case '基本セット':
-                targetPage = 'exproblem_set1.html';
+                targetPage = 'problem_set1.html';
                 break;
             case 'まっちゃ問':
-                targetPage = 'exproblem_set2.html';
+                targetPage = 'problem_set2.html';
                 break;
             case 'set3':
-                targetPage = 'exproblem_set3.html';
+                targetPage = 'problem_set3.html';
                 break;
             default:
-                targetPage = 'exproblem_set1.html';
+                targetPage = 'problem_set1.html';
                 break;
         }
 
