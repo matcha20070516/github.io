@@ -7,7 +7,7 @@ function start() {
     return;
   }
   sessionStorage.setItem("playerName", name);
-  sessionStorage.setItem("setName", setText);
+  sessionStorage.setItem("setName", set);
       
   window.location.href = "rule.html";
 }
