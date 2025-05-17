@@ -8,8 +8,12 @@ function start() {
   }
   sessionStorage.setItem("playerName", name);
   sessionStorage.setItem("setName", set);
-      
-  window.location.href = "rule.html";
+
+  if (set === "謎検模試_M") {
+    window.location.href = "exrule.html"
+  } else {
+    window.location.href = "rule.html";
+  }
 }
 
 function adjustViewportHeight() {
