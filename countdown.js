@@ -13,27 +13,25 @@ const timer = setInterval(() => {
     } else {
         clearInterval(timer);
 
-        // セッションから選択されたセットを取得
-        const selectedSet = sessionStorage.getItem('selectedSet');
+        // セッションから選択されたセットを取得（キー名をsetNameに）
+        const selectedSet = sessionStorage.getItem('setName');
 
-        // 選択されたセットに応じて遷移先を決定
         let targetPage = '';
         switch (selectedSet) {
             case 'set1':
-                targetPage = 'problem_set1.html'; // セット1の問題ページ
+                targetPage = 'exproblem_set1.html';
                 break;
             case 'set2':
-                targetPage = 'problem_set2.html'; // セット2の問題ページ
+                targetPage = 'exproblem_set2.html';
                 break;
             case 'set3':
-                targetPage = 'problem_set3.html'; // セット3の問題ページ
+                targetPage = 'exproblem_set3.html';
                 break;
             default:
-                targetPage = 'problem_set1.html'; // デフォルトでセット1
+                targetPage = 'exproblem_set1.html';
                 break;
         }
 
-        // 選択されたセットに基づいて遷移
         window.location.href = targetPage;
     }
 }, 1000);
