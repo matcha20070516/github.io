@@ -19,7 +19,7 @@ const timer = setInterval(() => {
         // 選択されたセットに応じて遷移先を決定
         let targetPage = '';
         switch (selectedSet) {
-            case 'set1':
+            case '謎検模試_M':
                 targetPage = 'problem_set1.html'; // セット1の問題ページ
                 break;
             case 'set2':
