@@ -1,8 +1,7 @@
 function start() {
   const name = document.getElementById("name").value.trim();
-  const select = document.getElementById("set");
-  const setText = select.options[select.selectesIndex].text;
-
+  const set = document.getElementById("set").value;
+  
   if (!name) {
     alert("名前を入力してください");
     return;
