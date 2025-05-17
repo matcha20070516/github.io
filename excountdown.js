@@ -20,16 +20,16 @@ const timer = setInterval(() => {
         let targetPage = '';
         switch (selectedSet) {
             case '謎検模試_M':
-                targetPage = 'problem_set1.html'; // セット1の問題ページ
+                targetPage = 'exproblem_set1.html'; // セット1の問題ページ
                 break;
             case 'set2':
-                targetPage = 'problem_set2.html'; // セット2の問題ページ
+                targetPage = 'exproblem_set2.html'; // セット2の問題ページ
                 break;
             case 'set3':
-                targetPage = 'problem_set3.html'; // セット3の問題ページ
+                targetPage = 'exproblem_set3.html'; // セット3の問題ページ
                 break;
             default:
-                targetPage = 'problem_set1.html'; // デフォルトでセット1
+                targetPage = 'exproblem_set1.html'; // デフォルトでセット1
                 break;
         }
 
