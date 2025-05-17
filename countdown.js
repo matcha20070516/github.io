@@ -18,10 +18,10 @@ const timer = setInterval(() => {
 
         let targetPage = '';
         switch (selectedSet) {
-            case 'set1':
+            case '基本セット':
                 targetPage = 'exproblem_set1.html';
                 break;
-            case 'set2':
+            case 'まっちゃ問':
                 targetPage = 'exproblem_set2.html';
                 break;
             case 'set3':
