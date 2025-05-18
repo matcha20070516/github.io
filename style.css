@@ -79,3 +79,21 @@ button:hover {
   background-color: #5da3fa;
   color: white;
 }
+
+.chapters {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding-bottom: 8px; /* スクロールバーが見えるように余白 */
+  -webkit-overflow-scrolling: touch; /* スマホの慣性スクロール */
+  scrollbar-width: thin; /* Firefox用 */
+}
+
+.chapters::-webkit-scrollbar {
+  height: 6px; /* 横スクロールバーの高さ */
+}
+
+.chapters::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
