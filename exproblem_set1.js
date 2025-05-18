@@ -101,4 +101,13 @@ window.onload = () => {
   loadQuestion();
   updateTimer();
   timerInterval = setInterval(updateTimer, 1000);
+const answerInput = document.getElementById("answer");
+
+answerInput.addEventListener("input", () => {
+  if (answerInput.value.trim() !== "") {
+    answerInput.style.backgroundColor = "#d0f0c0";
+  } else {
+    answerInput.style.backgroundColor = "white";
+  }
+});
 };
