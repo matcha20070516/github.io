@@ -47,6 +47,12 @@ function updateNavButtons() {
   document.getElementById("forward-btn").style.visibility = current < total ? "visible" : "hidden";
 }
 
+function updateNavButtons() {
+    document.getElementById("back-btn").style.visibility = current > 1 ? "visible" : "hidden";
+    document.getElementById("forward-btn").style.visibility =
+        current < maxReached && current < total ? "visible" : "hidden";
+}
+
 function updateChapters() {
   const chapterContainer = document.getElementById("chapters");
   chapterContainer.innerHTML = "";
