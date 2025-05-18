@@ -1,7 +1,7 @@
 const total = 20;  // 問題数
 let current = 1;
 let startTime = Date.now();
-let timeLimit = 60 * 60 * 1000; // 60分（1時間）のカウントダウン（必要に応じて変えてね）
+let timeLimit = 30 * 60 * 1000; 
 let timerInterval = null;
 
 const answers = Array(total).fill("");  // 謎検模試は終了時まとめてチェックなので空配列
