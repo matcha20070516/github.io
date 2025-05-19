@@ -93,4 +93,12 @@ window.onload = () => {
     saveCurrentAnswer();
     updateChapters();
   });
+
+  document.getElementById("submit-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    if (confirm("本当に終了してもよろしいでしょうか？")) {
+      clearInterval(timeInterval);
+      finishExam();
+    }
+  });
 };
