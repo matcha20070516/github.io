@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ツイートリンク生成
   const tweetText = encodeURIComponent(
-    `${username}さんが${setName}で${score}点を獲得しました！ #謎解き #TeaA`
+    `${setName}の結果は【${score}点】でした！ #謎解き #TeaA`
   );
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
   document.getElementById("share-link").href = tweetUrl;
