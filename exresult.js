@@ -16,3 +16,15 @@ window.addEventListener("DOMContentLoaded", () => {
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
   document.getElementById("share-link").href = tweetUrl;
 });
+
+window.onload = () => {
+  const username = localStorage.getItem("exUsername") || "名無し";
+  const score = localStorage.getItem("exScore") || 0;
+  const answers = JSON.parse(localStorage.getItem("exAnswers") || "[]");
+  const setName = localStorage.getItem("exSetName") || "謎検模試セット";
+
+  document.getElementById("result-username").textContent = username;
+  document.getElementById("result-score").textContent = `${score}点`;
+  document.getElementById("result-setname").textContent = setName;
+  // 必要に応じて詳細リンクやツイートリンクも生成
+};
