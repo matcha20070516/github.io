@@ -84,6 +84,12 @@ function finishExam() {
   alert("試験終了です。結果画面に遷移してください。");
 }
 
+function confirmAndFinish() {
+  if (confirm("本当に終了してもよろしいでしょうか？")) {
+    finishExam();
+  }
+}
+
 window.onload = () => {
   loadQuestion();
   updateTimer();
@@ -94,11 +100,6 @@ window.onload = () => {
     updateChapters();
   });
 
-  document.getElementById("submit-btn").addEventListener("click", (e) => {
-    e.preventDefault();
-    if (confirm("本当に終了してもよろしいでしょうか？")) {
-      clearInterval(timeInterval);
-      finishExam();
-    }
-  });
+  const submitBtn = document.querySelector(".submit-btn");
+  submitBtn.onclick = confirmAndFinish;
 };
