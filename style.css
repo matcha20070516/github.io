@@ -83,10 +83,9 @@ button:hover {
 .chapters {
   display: flex;
   overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 8px;
   gap: 8px;
-  padding-bottom: 8px; /* スクロールバーが見えるように余白 */
-  -webkit-overflow-scrolling: touch; /* スマホの慣性スクロール */
-  scrollbar-width: thin; /* Firefox用 */
 }
 
 .chapters::-webkit-scrollbar {
