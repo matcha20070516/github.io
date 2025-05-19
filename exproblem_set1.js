@@ -108,6 +108,6 @@ window.onload = () => {
     updateChapters();
   });
 
-  const submitBtn = document.querySelector(".submit-btn");
+  const submitBtn = document.getElementById("submit-btn");
   submitBtn.onclick = confirmAndFinish;
 };
