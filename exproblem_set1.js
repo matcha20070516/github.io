@@ -10,7 +10,7 @@ function updateTimer() {
   if (timeLimit <= 0) {
     clearInterval(timerInterval);
     document.getElementById("timer").textContent = "終了";
-    finishExam();
+    timeUp();
     return;
   }
 
