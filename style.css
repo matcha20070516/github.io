@@ -68,8 +68,8 @@ button:hover {
 }
 
 .chapter-btn {
-  width: 40px;
-  height: 20px;
+  width: 50px;
+  height: 30px;
   padding: 0;
   border: none;
   border-radius: 6px;
@@ -80,10 +80,11 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.chapter-btn.current {
-  background-color: #5da3fa;
-  color: white;
+
+  white-space: nowrap;       /* テキストの折り返しを禁止 */
+  overflow: hidden;          /* はみ出しは隠す */
+  text-overflow: ellipsis;   /* はみ出した部分は「...」で省略 */
+  font-size: 16px;           /* サイズ調整（必要なら） */
 }
 
 .chapters {
