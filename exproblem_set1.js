@@ -81,7 +81,17 @@ function saveCurrentAnswer() {
 function finishExam() {
   saveCurrentAnswer();
   console.log("全回答:", answers);
-  alert("試験終了です。結果画面に遷移してください。");
+  const username = document.getElementById("username-input")?.value || "名無し";
+  // 例: 点数を計算する関数があればそれを使う
+  const score = calculateScore(answers); // 自作の点数計算
+  // localStorageに保存
+  localStorage.setItem("exUsername", username);
+  localStorage.setItem("exScore", score);
+  localStorage.setItem("exAnswers", JSON.stringify(answers)); // 配列などならJSON化
+  localStorage.setItem("exSetName", "謎検模試セット1"); // 必要に応じてセット名も
+  alert("試験終了です。結果画面に遷移します。");
+
+  location.href = "exresult.html";
 }
 
 function confirmAndFinish() {
@@ -98,6 +108,22 @@ function confirmAndFinish() {
   };
 }
 
+function timeUp() {
+  saveCurrentAnswer();
+  
+  // ここで必要なデータをlocalStorageに保存
+  const username = document.getElementById("username-input")?.value || "名無し";
+  const score = calculateScore(answers);
+  
+  localStorage.setItem("exUsername", username);
+  localStorage.setItem("exScore", score);
+  localStorage.setItem("exAnswers", JSON.stringify(answers));
+  localStorage.setItem("exSetName", "謎検模試セット1");
+
+  alert("時間切れです。結果画面に移動します。");
+
+  location.href = "exresult.html";
+}
 window.onload = () => {
   loadQuestion();
   updateTimer();
