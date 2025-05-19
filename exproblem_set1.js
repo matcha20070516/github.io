@@ -85,9 +85,17 @@ function finishExam() {
 }
 
 function confirmAndFinish() {
-  if (confirm("本当に終了してもよろしいでしょうか？")) {
+  const overlay = document.getElementById("confirm-overlay");
+  overlay.style.display = "flex";
+
+  document.getElementById("confirm-yes").onclick = () => {
+    overlay.style.display = "none";
     finishExam();
-  }
+  };
+
+  document.getElementById("confirm-no").onclick = () => {
+    overlay.style.display = "none";
+  };
 }
 
 window.onload = () => {
