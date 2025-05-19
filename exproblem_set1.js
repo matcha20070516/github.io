@@ -49,8 +49,13 @@ function updateChapters() {
     const btn = document.createElement("button");
     btn.textContent = `${i + 1}`;
     btn.className = "chapter-btn";
+
+    // 現在の問題なら「current」クラス
     if (i + 1 === current) btn.classList.add("current");
-    btn.disabled = false;  // すべて押せる仕様
+
+    // 解答が入力されていたら「answered」クラス
+    if (answers[i].trim() !== "") btn.classList.add("answered");
+
     btn.onclick = () => {
       saveCurrentAnswer();
       current = i + 1;
@@ -101,13 +106,9 @@ window.onload = () => {
   loadQuestion();
   updateTimer();
   timerInterval = setInterval(updateTimer, 1000);
-const answerInput = document.getElementById("answer");
 
-answerInput.addEventListener("input", () => {
-  if (answerInput.value.trim() !== "") {
-    answerInput.style.backgroundColor = "#d0f0c0";
-  } else {
-    answerInput.style.backgroundColor = "white";
-  }
-});
+  document.getElementById("answer").addEventListener("input", () => {
+    saveCurrentAnswer();
+    updateChapters();
+  });
 };
