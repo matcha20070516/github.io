@@ -32,7 +32,6 @@ function loadQuestion() {
   document.getElementById("answer").value = answers[current - 1];
   document.getElementById("answer").disabled = false; // いつでも編集可
 
-  document.getElementById("message").textContent = "";
   updateNavButtons();
   updateChapters();
 }
