@@ -1,3 +1,4 @@
+/* 基本スタイルはそのまま */
 body {
   height: calc(var(--vh, 1vh) * 100);
   margin: 0;
@@ -7,6 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;  /* 基本フォントサイズ */
 }
 
 .container {
@@ -19,6 +21,7 @@ body {
   text-align: center;
 }
 
+/* フォントサイズ・余白微調整 */
 h1 {
   font-size: 1.8em;
   margin-bottom: 24px;
@@ -51,22 +54,7 @@ button:hover {
   background-color: #3c84e6;
 }
 
-@media (max-width: 600px) {
-  .container {
-    width: 95%;
-    padding: 20px;
-  }
-
-  .count, .message, h2, .result-info {
-    font-size: 0.9em;
-  }
-
-  .share-link {
-    font-size: 1em;
-    padding: 8px;
-  }
-}
-
+/* チャプターボタン */
 .chapter-btn {
   width: 50px;
   height: 30px;
@@ -81,12 +69,13 @@ button:hover {
   justify-content: center;
   align-items: center;
 
-  white-space: nowrap;       /* テキストの折り返しを禁止 */
-  overflow: hidden;          /* はみ出しは隠す */
-  text-overflow: ellipsis;   /* はみ出した部分は「...」で省略 */
-  font-size: 16px;           /* サイズ調整（必要なら） */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
 }
 
+/* 横スクロールのチャプター */
 .chapters {
   display: flex;
   overflow-x: auto;
@@ -95,11 +84,114 @@ button:hover {
   gap: 8px;
 }
 
+/* スクロールバーの見た目 */
 .chapters::-webkit-scrollbar {
-  height: 6px; /* 横スクロールバーの高さ */
+  height: 6px;
 }
 
 .chapters::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,0.2);
   border-radius: 3px;
+}
+
+
+/* ----------- レスポンシブ対応 ----------- */
+
+/* スマホ（～600px） */
+@media (max-width: 600px) {
+  body {
+    font-size: 18px;  /* 少し大きめに */
+  }
+
+  .container {
+    width: 95%;
+    padding: 20px;
+    max-width: none; /* 幅制限外す */
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 16px;
+  }
+
+  input[type="text"], select {
+    font-size: 1.1em;
+  }
+
+  button {
+    font-size: 1.1em;
+    padding: 14px 28px;
+  }
+
+  .chapter-btn {
+    width: 44px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+
+/* タブレット（601px～1024px） */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  .container {
+    width: 80%;
+    max-width: 600px;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 1.7em;
+    margin-bottom: 24px;
+  }
+
+  input[type="text"], select {
+    font-size: 1.2em;
+  }
+
+  button {
+    font-size: 1.2em;
+    padding: 16px 32px;
+  }
+
+  .chapter-btn {
+    width: 48px;
+    height: 30px;
+    font-size: 15px;
+  }
+}
+
+/* PC（1025px～） */
+@media (min-width: 1025px) {
+  body {
+    font-size: 22px;
+  }
+
+  .container {
+    width: 70%;
+    max-width: 700px;
+    padding: 40px 60px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 32px;
+  }
+
+  input[type="text"], select {
+    font-size: 1.3em;
+  }
+
+  button {
+    font-size: 1.3em;
+    padding: 18px 36px;
+  }
+
+  .chapter-btn {
+    width: 50px;
+    height: 32px;
+    font-size: 16px;
+  }
 }
