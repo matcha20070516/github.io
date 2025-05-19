@@ -134,6 +134,8 @@ window.onload = () => {
     updateChapters();
   });
 
-  const submitBtn = document.getElementById("submit-btn");
-  submitBtn.onclick = confirmAndFinish;
+  const submitBtn = document.getElementById("finish-button");
+  if(submitBtn) {
+    submitBtn.onclick = confirmAndFinish;
+  }
 };
