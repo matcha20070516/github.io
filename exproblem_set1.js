@@ -107,7 +107,7 @@ const calculateScore = (userAnswers) => {
 // 試験終了処理
 const finishExam = () => {
   saveCurrentAnswer();
-  const username = document.getElementById("username-input")?.value || "名無し";
+  const username = localStorage.getItem("exUsername") || "名無し";
   const score = calculateScore(answers);
   localStorage.setItem("exUsername", username);
   localStorage.setItem("exScore", score);
