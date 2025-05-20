@@ -6,8 +6,8 @@ function start() {
     alert("名前を入力してください");
     return;
   }
-  sessionStorage.setItem("playerName", name);
-  sessionStorage.setItem("setName", set);
+  localStorage.setItem("playerName", name);
+  localStorage.setItem("setName", set);
 
   if (set.includes("謎検模試")) {
     window.location.href = "exrule.html";
