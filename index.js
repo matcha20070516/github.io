@@ -1,19 +1,23 @@
 function start() {
   const name = document.getElementById("name").value.trim();
   const set = document.getElementById("set").value;
-  
+
   if (!name) {
     alert("名前を入力してください");
     return;
   }
+
   localStorage.setItem("playerName", name);
   localStorage.setItem("setName", set);
 
-  if (set.includes("謎検模試")) {
-    window.location.href = "exrule.html";
-  } else {
-    window.location.href = "rule.html";
-  }
+  const isExam = set.includes("謎検模試");
+  const setKey = set; // 必要なら加工してもよい
+
+  const nextPage = isExam ? "exrule.html" : "rule.html";
+  const mode = isExam ? "exam" : "normal";
+
+  // クエリにセット名とモードを追加して遷移
+  window.location.href = `${nextPage}?setkey=${encodeURIComponent(setKey)}&mode=${mode}`;
 }
 
 function adjustViewportHeight() {
