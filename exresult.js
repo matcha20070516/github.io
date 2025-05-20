@@ -7,7 +7,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // HTMLに反映
   document.getElementById("username").textContent = username;
-  document.getElementById("set-name").textContent = stename;
   document.getElementById("score").textContent = score;
 
   // （必要であればセット名も表示）
