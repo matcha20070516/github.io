@@ -1,24 +1,27 @@
-// ページ読み込み時に実行
+// exresult.js
+
+import { loadResult } from './storage.js';
+
 window.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const setkey = urlParams.get("setkey") || "default";
 
-  const result = loadResult("exam", setkey);
+  const result = loadResult(setkey);
 
-  if (!result) {
-    alert("結果データが見つかりませんでした。");
-    return;
+  if (result) {
+    document.getElementById("setname").textContent = result.setName;
+    document.getElementById("username").textContent = result.username;
+    document.getElementById("score").textContent = result.score;
+
+    const tweetText = encodeURIComponent(
+      `${result.setName}の結果は【${result.score}点】でした！ #謎解き #TeaA`
+    );
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+    document.getElementById("share-link").href = tweetUrl;
+  } else {
+    // データが存在しない場合の処理
+    document.getElementById("setname").textContent = "データが見つかりません";
+    document.getElementById("username").textContent = "名無し";
+    document.getElementById("score").textContent = "0";
   }
-
-  // HTMLに反映
-  document.getElementById("username").textContent = result.playerName || "名無し";
-  document.getElementById("score").textContent = result.score || "0";
-  document.getElementById("setname").textContent = result.setName || setkey;
-
-  // ツイートリンク生成
-  const tweetText = encodeURIComponent(
-    `${result.setName || setkey}の結果は【${result.score}点】でした！ #謎解き #TeaA`
-  );
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  document.getElementById("share-link").href = tweetUrl;
 });
