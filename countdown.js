@@ -14,7 +14,7 @@ const timer = setInterval(() => {
         clearInterval(timer);
 
         // セッションから選択されたセットを取得（キー名をsetNameに）
-        const selectedSet = sessionStorage.getItem('setName');
+        const selectedSet = localStorage.getItem('setName');
 
         let targetPage = '';
         switch (selectedSet) {
