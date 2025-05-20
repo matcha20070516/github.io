@@ -1,9 +1,13 @@
+const urlParams = new URLSearchParams(window.location.search);
+const setkey = urlParams.get("setkey") || "default";
 
-    const setName = localStorage.getItem("setName") || "未設定";
-    const playerName = localStorage.getItem("playerName") || "名無し";
-    const passes = localStorage.getItem("passes") || "0";
-    const totalTime = Number(localStorage.getItem("time")) || 0;
-    
+const result = loadResult("exam", setkey);
+
+const setName = setkey;
+const playerName = result.username || "名無し";
+const passes = result.answers?.filter(ans => ans === "PASS").length || 0;
+const totalTime = Number(result.score) || 0;
+
     function formatTime(ms) {
       const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
       const seconds = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
@@ -49,11 +53,3 @@
     }
 
     getRanking();
-    // デバッグ表示
-    const debugDiv = document.getElementById("debug");
-    debugDiv.innerText = `
-      playerName: ${sessionStorage.getItem("playerName")}
-      setName: ${sessionStorage.getItem("setName")}
-      time: ${sessionStorage.getItem("time")}
-      passes: ${sessionStorage.getItem("passes")}
-    `;
