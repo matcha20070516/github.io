@@ -114,8 +114,8 @@ function showPassOverlay() {
 
 function finish() {
     const totalTime = Date.now() - startTime + addedPenalty * 1000;
-    sessionStorage.setItem("passes", passes);
-    sessionStorage.setItem("time", totalTime);
+    localStorage.setItem("passes", passes);
+    localStorage.setItem("time", totalTime);
     window.location.href = "result.html";
 }
 
