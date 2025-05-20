@@ -1,8 +1,8 @@
 
-    const setName = sessionStorage.getItem("setName") || "未設定";
-    const playerName = sessionStorage.getItem("playerName") || "名無し";
-    const passes = sessionStorage.getItem("passes") || "0";
-    const totalTime = Number(sessionStorage.getItem("time")) || 0;
+    const setName = localStorage.getItem("setName") || "未設定";
+    const playerName = localStorage.getItem("playerName") || "名無し";
+    const passes = localStorage.getItem("passes") || "0";
+    const totalTime = Number(localStorage.getItem("time")) || 0;
     
     function formatTime(ms) {
       const minutes = String(Math.floor(ms / 60000)).padStart(2, '0');
